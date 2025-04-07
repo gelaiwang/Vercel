@@ -11,7 +11,7 @@ const resources = [
   },
   {
     id: 2,
-    title: "无版权音乐资源站",
+    title: "无版权音乐资源网站",
     description: "可商用无版权音乐资源，适合视频创作使用。",
     image: "https://picsum.photos/400/200?random=2",
     link: "https://example.com/music",
@@ -29,19 +29,38 @@ const resources = [
 
 export default function App() {
   const [selectedTag, setSelectedTag] = useState(null);
-  const filteredResources = selectedTag
-    ? resources.filter((r) => r.tags.includes(selectedTag))
-    : resources;
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const filteredResources = resources.filter((r) => {
+    const matchesTag = selectedTag ? r.tags.includes(selectedTag) : true;
+    const matchesSearch = searchTerm
+      ? r.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        r.description.toLowerCase().includes(searchTerm.toLowerCase())
+      : true;
+    return matchesTag && matchesSearch;
+  });
 
   return (
-    <main className="p-6 max-w-5xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6">📚 精选资源导航</h1>
+    <main className="min-h-screen bg-gradient-to-b from-yellow-50 to-white p-6">
+      <div className="text-center py-16">
+        <h1 className="text-4xl font-bold mb-4">🔍 搜索 Gelai Lab 精品资源</h1>
+        <p className="text-gray-600 mb-8">
+          本站所有资源由 Gelai 精心组织，欢迎搜索你需要的好东西！
+        </p>
+        <input
+          type="text"
+          placeholder="输入关键词..."
+          className="w-full max-w-xl px-5 py-3 text-lg border rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-400"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
 
-      <div className="mb-4 space-x-2">
+      <div className="text-center mb-6 space-x-2">
         {Array.from(new Set(resources.flatMap((r) => r.tags))).map((tag) => (
           <button
             key={tag}
-            className={`px-3 py-1 rounded-full text-sm border ${
+            className={`px-3 py-1 rounded-full text-sm border transition ${
               selectedTag === tag
                 ? "bg-black text-white"
                 : "bg-white text-black"
@@ -82,28 +101,29 @@ export default function App() {
       </div>
 
       <div className="text-center mt-12">
-  <h2 className="text-xl font-medium mb-2">💰 支持 Gelai Lab</h2>
-  <p className="text-sm text-gray-600 mb-4">如果你觉得这些资源对你有帮助，可以扫码支持我继续创作与整理：</p>
-  
-  <div className="flex flex-col md:flex-row items-center justify-center gap-8">
-    <div>
-    <img
-  src="/wechat.jpg"
-  alt="微信打赏"
-  className="w-40 h-40 mx-auto rounded border transition-transform duration-200 hover:scale-105"
-/>
-      <p className="text-sm mt-2 text-gray-700">微信支付</p>
-    </div>
-    <div>
-    <img
-  src="/alipay.jpg"
-  alt="支付宝打赏"
-  className="w-40 h-40 mx-auto rounded border transition-transform duration-200 hover:scale-105"
-/>
-      <p className="text-sm mt-2 text-gray-700">支付宝</p>
-    </div>
-  </div>
-</div>
+        <h2 className="text-xl font-medium mb-2">💰 支持 Gelai Lab</h2>
+        <p className="text-sm text-gray-600 mb-4">
+          如果你觉得这些资源对你有帮助，可以扫码支持我继续创作与整理：
+        </p>
+        <div className="flex flex-col md:flex-row items-center justify-center gap-8">
+          <div>
+            <img
+              src="/wechat.jpg"
+              alt="微信打赏"
+              className="w-40 h-40 mx-auto rounded border transition-transform duration-200 hover:scale-105"
+            />
+            <p className="text-sm mt-2 text-gray-700">微信支付</p>
+          </div>
+          <div>
+            <img
+              src="/alipay.jpg"
+              alt="支付宝打赏"
+              className="w-40 h-40 mx-auto rounded border transition-transform duration-200 hover:scale-105"
+            />
+            <p className="text-sm mt-2 text-gray-700">支付宝</p>
+          </div>
+        </div>
+      </div>
     </main>
   );
 }
