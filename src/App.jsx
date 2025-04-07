@@ -82,14 +82,28 @@ export default function App() {
       </div>
 
       <div className="text-center mt-12">
-        <h2 className="text-xl font-medium mb-2">💰 支持本站</h2>
-        <p className="text-sm text-gray-600 mb-2">如果你觉得这些资源对你有帮助，可以扫码打赏支持我继续整理更新👇</p>
-        <img
-          src="/donate-qr.png"
-          alt="打赏二维码"
-          className="w-48 h-48 mx-auto mt-2 border rounded"
-        />
-      </div>
+  <h2 className="text-xl font-medium mb-2">💰 支持 Gelai Lab</h2>
+  <p className="text-sm text-gray-600 mb-4">如果你觉得这些资源对你有帮助，可以扫码支持我继续创作与整理：</p>
+  
+  <div className="flex flex-col md:flex-row items-center justify-center gap-8">
+    <div>
+    <img
+  src="/wechat.png"
+  alt="微信打赏"
+  className="w-40 h-40 mx-auto rounded border transition-transform duration-200 hover:scale-105"
+/>
+      <p className="text-sm mt-2 text-gray-700">微信支付</p>
+    </div>
+    <div>
+    <img
+  src="/alipay.png"
+  alt="支付宝打赏"
+  className="w-40 h-40 mx-auto rounded border transition-transform duration-200 hover:scale-105"
+/>
+      <p className="text-sm mt-2 text-gray-700">支付宝</p>
+    </div>
+  </div>
+</div>
     </main>
   );
 }
