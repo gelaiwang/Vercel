@@ -88,7 +88,7 @@ export default function App() {
   <div className="flex flex-col md:flex-row items-center justify-center gap-8">
     <div>
     <img
-  src="/WeChat.png"
+  src="/wechat.png"
   alt="微信打赏"
   className="w-40 h-40 mx-auto rounded border transition-transform duration-200 hover:scale-105"
 />
@@ -96,7 +96,7 @@ export default function App() {
     </div>
     <div>
     <img
-  src="/Alipay.png"
+  src="/alipay.png"
   alt="支付宝打赏"
   className="w-40 h-40 mx-auto rounded border transition-transform duration-200 hover:scale-105"
 />
