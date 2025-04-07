@@ -27,9 +27,8 @@ const resources = [
   }
 ];
 
-export default function HomePage() {
+export default function App() {
   const [selectedTag, setSelectedTag] = useState(null);
-
   const filteredResources = selectedTag
     ? resources.filter((r) => r.tags.includes(selectedTag))
     : resources;
